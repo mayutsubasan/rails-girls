@@ -1,27 +1,18 @@
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @question.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @question.description %>
-</p>
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@question.picture_url, width: 600) if @question.picture.present? %>
-</p>
-<h3>Comments</h3>
-<% @comments.each do |comment| %>
-  <div>
-    <strong><%= comment.user_name %></strong>
-    <br />
-    <p><%= comment.body %></p>
-    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: '削除してもよろしいですか？' } %></p>
+<div class="row">
+  <div class="col-md-9">
+    <%= image_tag(@question.picture_url, width: '100%') if @question.picture.present? %>
   </div>
-<% end %>
-<%= render 'comments/form', comment: @comment %>
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+
+  <div class="col-md-3">
+    <p><b>Name: </b><%= @question.name %></p>
+    <p><b>Description: </b><%= @question.description %></p>
+    <p>
+      <%= link_to 'Edit', edit_question_path(@question) %> |
+      <%= link_to 'Destroy', @question, data: { confirm: 'Are you sure?' }, method: :delete %> |
+      <%= link_to 'Back', questions_path %>
+    </p>
+  </div>
+</div>
