@@ -9,7 +9,10 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   # GET /questions/1.json
+
   def show
+  @comments = @question.comments.all
+  @comment = @question.comments.build
   end
 
   # GET /questions/new
